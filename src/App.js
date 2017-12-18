@@ -36,7 +36,7 @@ class App extends Component {
       settings.isLoaded = false; //for update films in next time 
       localStorage[this.STORAGE] = JSON.stringify(settings);
     }.bind(this);
-    var xhr = new XMLHttpRequest();
+    let xhr = new XMLHttpRequest();
 
     xhr.open('GET', 'films.json', false);
 
@@ -98,11 +98,11 @@ class App extends Component {
 
 
   render() {
-    console.log(this.state);
-    var filmsList = [];
+    
+    let filmsList = [];
       // filter films
       // filter by genres
-      let filteredFilms = this.state.genres.length > 1 ? Main.groupBy(this.allFilms.filter(function (el) {
+      let filteredFilms = this.state.genres.length > 1 ? Main.groupBy(this.allFilms.filter(el => {
         if (this.state.isAny) {
           return Main.intersect(el.Genres, this.state.genres).length > 0; // filter by genres
         }
@@ -110,18 +110,18 @@ class App extends Component {
       }, this), 
       x => x.Year) : Main.groupBy(this.allFilms, x => x.Year);
 
-      var props = Object.keys(filteredFilms)
+      let props = Object.keys(filteredFilms)
         .filter(x => parseInt(x) >= this.state.years.left && parseInt(x) <= this.state.years.right) // filter by years
-        .sort(function (a, b) { return b - a; });
+        .sort((a, b) => b - a);
 
-      props.forEach(function (key) {
+      props.forEach(key => {
         const films = filteredFilms[key].filter(x => x.IMDB >= this.state.rate.min && x.IMDB <= this.state.rate.max)
         if (films.length !== 0) {
           filmsList.push(<FilmsList key={key} year={key} genres={this.state.genres} films={films} />);
         }
 
       }, this);
-      //
+      
       return (
         <div>
 
@@ -136,9 +136,9 @@ class App extends Component {
             </div>
             {
 
-              Main.genres.map(function (el) {
+              Main.genres.map( el => {
 
-                const checked = this.state.genres.find(function (genre) { return genre === el.name }) ? true : false;
+                const checked = this.state.genres.find(genre => genre === el.name) ? true : false;
                 const active = checked ? 'active' : '';
                 return <div key={el.name}>
                   <label className='btn btn-default'>
