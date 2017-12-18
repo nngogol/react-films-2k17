@@ -16,7 +16,8 @@ class RateBar extends Component{
     }
 
     getOffset(value) {
-        return ((value - 1) / 9 * 97.6).toString() + '%';
+        let val = (value - 1) / 9 * 97.6;
+        return `${val}%`;
     }
 
     leftchangeHandler(e) {
