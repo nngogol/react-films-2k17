@@ -4,7 +4,7 @@ import * as Main from '../main';
 
 class FilmsList extends Component{
     render() {
-        var films = this.props.films.map(function (film) {
+        var films = this.props.films.map(film => {
             const genres = Main.intersect(film.Genres, this.props.genres);
             return <Film key={film.Name} name={film.Name} genres={genres} rating={film.IMDB} />
         }, this)
