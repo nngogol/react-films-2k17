@@ -15,7 +15,8 @@ class YearBar extends Component{
     }
 
     getOffset(value) {
-        return ((value - 1915) * 0.96).toString() + '%';
+        let val = (value - 1915) * 0.96;
+        return `${val}%`;
     }
 
     leftchangeHandler(e) {
