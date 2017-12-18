@@ -6,7 +6,7 @@ class Bar extends Component{
         const pointWidth = ((100 / this.props.genres.length).toFixed(1)).toString() + '%';
         return <div className="bar">
             {
-                this.props.genres.map(function (el, i) {
+                this.props.genres.map((el, i) => {
                     return <div key={i} key={el.name} className="point" style={{ width: pointWidth, background: Main.genres.find(x => x.name == el).color }}>
 
                     </div>
